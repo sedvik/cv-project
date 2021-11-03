@@ -55,7 +55,7 @@ class App extends React.Component {
     return (
       <div className="resume-container">
         <ContactInfo
-          editable={false}
+          editable={true}
           contactInfo={contactInfo}
         />
         <hr />

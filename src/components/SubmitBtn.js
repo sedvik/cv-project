@@ -2,7 +2,9 @@ import React from 'react'
 
 class SubmitBtn extends React.Component {
   render () {
-    return <button>Submit</button>
+    const { setToDisplay } = this.props
+
+    return <button onClick={setToDisplay}>Submit</button>
   }
 }
 

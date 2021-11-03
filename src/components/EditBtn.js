@@ -2,7 +2,9 @@ import React from 'react'
 
 class EditBtn extends React.Component {
   render () {
-    return <button>Edit</button>
+    const { setEditable } = this.props
+
+    return <button onClick={setEditable}>Edit</button>
   }
 }
 
