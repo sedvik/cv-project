@@ -18,3 +18,15 @@ h1 {
 h2 {
   font-size: 1.5rem;
 }
+
+i {
+  font-style: italic;
+}
+
+.large {
+  font-size: 1.5rem;
+}
+
+.bold {
+  font-weight: bold;
+}

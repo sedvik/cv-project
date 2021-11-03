@@ -65,7 +65,7 @@ class App extends React.Component {
         />
         <hr />
         <Experience
-          editable={false}
+          editable={true}
           experience={experience}
         />
       </div>

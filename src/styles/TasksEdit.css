@@ -1,0 +1,13 @@
+.tasks-edit-container {
+  margin-top: 0.5rem;
+}
+
+.editable-tasks-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.add-task {
+  margin-top: 1rem;
+}

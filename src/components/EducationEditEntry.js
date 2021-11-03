@@ -18,10 +18,10 @@ class EducationEditEntry extends React.Component {
           <input id={`school-${entryNum}`} type="text" defaultValue={schoolName} />
           <label htmlFor={`title-${entryNum}`}>Title of Study</label>
           <input id={`title-${entryNum}`} type="text" defaultValue={titleOfStudy} />
-          <label htmlFor={`start-date-${entryNum}`}>Start Date</label>
-          <input id={`start-date-${entryNum}`} type="date" defaultValue={startDate} />
-          <label htmlFor={`end-date-${entryNum}`}>End Date</label>
-          <input id={`end-date-${entryNum}`} type="date" defaultValue={endDate} />
+          <label htmlFor={`edu-start-date-${entryNum}`}>Start Date</label>
+          <input id={`edu-start-date-${entryNum}`} type="date" defaultValue={startDate} />
+          <label htmlFor={`edu-end-date-${entryNum}`}>End Date</label>
+          <input id={`edu-end-date-${entryNum}`} type="date" defaultValue={endDate} />
       </div>
     )
   }
