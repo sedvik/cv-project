@@ -1,0 +1,10 @@
+.add-entry {
+  font-size: 1.2rem;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 1rem;
+}
+
+.add-entry:hover {
+  cursor: pointer;
+}

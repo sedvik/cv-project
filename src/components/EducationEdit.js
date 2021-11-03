@@ -1,5 +1,6 @@
 import React from 'react'
 import EducationEditEntry from './EducationEditEntry'
+import AddEntryBtn from './AddEntryBtn'
 import '../styles/EducationEdit.css'
 
 class EducationEdit extends React.Component {
@@ -19,6 +20,7 @@ class EducationEdit extends React.Component {
             )
           })
         }
+        <AddEntryBtn />
       </div>
     )
   }

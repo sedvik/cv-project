@@ -39,7 +39,7 @@ class App extends React.Component {
         />
         <hr />
         <Education
-          editable={false}
+          editable={true}
           education={education}
         />
         <hr />
