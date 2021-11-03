@@ -1,0 +1,16 @@
+.contact-info-edit {
+  margin-top: 0.5rem;
+}
+
+.contact-info-edit label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.contact-info-edit input {
+  margin-bottom: 0.4rem;
+}
+
+#contact-phone {
+  margin-bottom: 1rem;
+}
