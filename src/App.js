@@ -12,16 +12,41 @@ class App extends React.Component {
       phone: '555-555-5555'
     }
 
+    const education = [
+      {
+        schoolName: 'University of Utah',
+        titleOfStudy: 'Chemical Engineering',
+        startDate: '2012-08-21',
+        endDate: '2016-05-10'
+      },
+      {
+        schoolName: 'Granger High',
+        titleOfStudy: 'General',
+        startDate: '2009-08-28',
+        endDate: '2012-05-21'
+      }
+    ]
+
+    const experience = [
+      {}
+    ]
+
     return (
       <div className="resume-container">
         <ContactInfo
-          editable={true}
+          editable={false}
           contactInfo={contactInfo}
         />
         <hr />
-        <Education editable={false} />
+        <Education
+          editable={false}
+          education={education}
+        />
         <hr />
-        <Experience editable={false} />
+        <Experience
+          editable={false}
+          experience={experience}
+        />
       </div>
     )
   }

@@ -1,0 +1,36 @@
+.education-card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: rgb(248, 241, 231);
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 2rem;
+  margin: 1rem;
+}
+
+.education-card button {
+  position: relative;
+  left: 98%;
+  bottom: 20px;
+  width: 25px;
+  height: 25px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(245, 66, 66);
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.education-card button:hover {
+  cursor: pointer;
+  background-color: rgb(245, 47, 47);
+}
+
+.education-card label {
+  margin-bottom: 0.2rem;
+}
+
+.education-card input {
+  margin-bottom: 0.5rem;
+}
