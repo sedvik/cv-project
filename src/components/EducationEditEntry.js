@@ -12,7 +12,6 @@ class EducationEditEntry extends React.Component {
     const id = e.target.getAttribute('data-id')
     const property = e.target.getAttribute('data-property')
     const value = e.target.value
-
     this.props.updateEducationEntry(id, property, value)
   }
 
