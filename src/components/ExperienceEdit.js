@@ -5,16 +5,30 @@ import '../styles/ExperienceEdit.css'
 
 class ExperienceEdit extends React.Component {
   render () {
-    const { experience } = this.props
+    const {
+      experience,
+      addExperienceEntry,
+      deleteExperienceEntry,
+      updateExperienceEntry,
+      taskCallbacks
+    } = this.props
 
     return (
       <div className="experience-edit-container">
         {
-          experience.map((entry, i) => {
-            return <ExperienceEditEntry key={i} entryNum={i} experienceEntry={entry} />
+          experience.map((entry) => {
+            return (
+              <ExperienceEditEntry
+                key={entry.id}
+                experienceEntry={entry}
+                deleteExperienceEntry={deleteExperienceEntry}
+                updateExperienceEntry={updateExperienceEntry}
+                taskCallbacks={taskCallbacks}
+              />
+            )
           })
         }
-        <AddEntryBtn />
+        <AddEntryBtn addEntry={addExperienceEntry} />
       </div>
     )
   }

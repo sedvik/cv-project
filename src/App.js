@@ -32,9 +32,18 @@ class App extends React.Component {
         companyName: 'Edwards Lifesciences',
         position: 'Quality Engineer I',
         tasks: [
-          'Perform IQ/OQ',
-          'Troubleshoot equipment failures',
-          'Process Validation'
+          {
+            id: 1,
+            text: 'Perform IQ/OQ'
+          },
+          {
+            id: 2,
+            text: 'Troubleshoot equipment failures'
+          },
+          {
+            id: 3,
+            text: 'Process Validation'
+          }
         ],
         startDate: '2016-05-28',
         endDate: '2018-04-28'
@@ -43,9 +52,18 @@ class App extends React.Component {
         companyName: 'Stryker',
         position: 'Sr. Quality Engineer',
         tasks: [
-          'Perform IQ/OQ',
-          'Troubleshoot equipment failures',
-          'Process Validation'
+          {
+            id: 1,
+            text: 'Perform IQ/OQ'
+          },
+          {
+            id: 2,
+            text: 'Troubleshoot equipment failures'
+          },
+          {
+            id: 3,
+            text: 'Process Validation'
+          }
         ],
         startDate: '2020-03-31',
         endDate: '2021-04-21'

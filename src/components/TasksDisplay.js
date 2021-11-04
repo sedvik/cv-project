@@ -9,7 +9,7 @@ class TasksDisplay extends React.Component {
       <div className="tasks-display">
         <ul>
           {tasks.map((task, i) => {
-            return <li key={i}>{task}</li>
+            return <li key={i}>{task.text}</li>
           })}
         </ul>
       </div>

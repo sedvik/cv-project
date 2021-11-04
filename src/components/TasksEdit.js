@@ -3,8 +3,27 @@ import EditableTask from './EditableTask'
 import '../styles/TasksEdit.css'
 
 class TasksEdit extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleButtonClick = this.handleButtonClick.bind(this)
+  }
+
+  handleButtonClick (e) {
+    const id = e.target.getAttribute('data-entryid')
+    this.props.taskCallbacks.addTaskEntry(id)
+  }
+
   render () {
-    const { tasks } = this.props
+    const {
+      entryId,
+      tasks,
+      taskCallbacks
+    } = this.props
+
+    const {
+      deleteTaskEntry,
+      updateTaskEntry
+    } = taskCallbacks
 
     return (
       <div className="tasks-edit-container">
@@ -12,11 +31,27 @@ class TasksEdit extends React.Component {
         <div className="editable-tasks-container">
           {
             tasks.map((task, i) => {
-              return <EditableTask key={i} task={task} entryNum={i + 1} />
+              return (
+                <EditableTask
+                  key={task.id}
+                  task={task}
+                  entryId={entryId}
+                  taskId={task.id}
+                  entryNum={i + 1}
+                  deleteTaskEntry={deleteTaskEntry}
+                  updateTaskEntry={updateTaskEntry}
+                />
+              )
             })
           }
         </div>
-        <button className="add-task">Add Task</button>
+        <button
+          className="add-task"
+          data-entryid={entryId}
+          onClick={this.handleButtonClick}
+        >
+          Add Task
+        </button>
       </div>
     )
   }

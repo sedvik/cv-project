@@ -3,9 +3,27 @@ import TasksEdit from './TasksEdit'
 import '../styles/ExperienceEditEntry.css'
 
 class ExperienceEditEntry extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleEntryUpdate = this.handleEntryUpdate.bind(this)
+    this.handleEntryDelete = this.handleEntryDelete.bind(this)
+  }
+
+  handleEntryUpdate (e) {
+    const id = e.target.getAttribute('data-id')
+    const property = e.target.getAttribute('data-property')
+    const value = e.target.value
+    this.props.updateExperienceEntry(id, property, value)
+  }
+
+  handleEntryDelete (e) {
+    const id = e.target.getAttribute('data-id')
+    this.props.deleteExperienceEntry(id)
+  }
+
   render () {
-    const entryNum = this.props.entryNum
     const {
+      id,
       companyName,
       position,
       tasks,
@@ -13,20 +31,60 @@ class ExperienceEditEntry extends React.Component {
       endDate
     } = this.props.experienceEntry
 
+    const { taskCallbacks } = this.props
+
     return (
       <div className="experience-edit-entry">
-        <button className="delete-btn">X</button>
+        <button
+          className="delete-btn"
+          onClick={this.handleEntryDelete}
+          data-id={id}
+        >
+          X
+        </button>
         <div className="experience-entry-info">
-          <label htmlFor={`company-${entryNum}`}>Company Name</label>
-          <input id={`company-${entryNum}`} type="text" defaultValue={companyName} />
-          <label htmlFor={`position-${entryNum}`}>Position</label>
-          <input id={`position-${entryNum}`} type="text" defaultValue={position} />
-          <label htmlFor={`exp-start-date-${entryNum}`}>Start Date</label>
-          <input id={`exp-start-date-${entryNum}`} type="date" defaultValue={startDate} />
-          <label htmlFor={`exp-end-date-${entryNum}`}>End Date</label>
-          <input id={`exp-end-date-${entryNum}`} type="date" defaultValue={endDate} />
+          <label htmlFor={`company-${id}`}>Company Name</label>
+          <input
+            id={`company-${id}`}
+            type="text"
+            defaultValue={companyName}
+            data-id={id}
+            data-property="companyName"
+            onChange={this.handleEntryUpdate}
+          />
+          <label htmlFor={`position-${id}`}>Position</label>
+          <input
+            id={`position-${id}`}
+            type="text"
+            defaultValue={position}
+            data-id={id}
+            data-property="position"
+            onChange={this.handleEntryUpdate}
+          />
+          <label htmlFor={`exp-start-date-${id}`}>Start Date</label>
+          <input
+            id={`exp-start-date-${id}`}
+            type="date"
+            defaultValue={startDate}
+            data-id={id}
+            data-property="startDate"
+            onChange={this.handleEntryUpdate}
+          />
+          <label htmlFor={`exp-end-date-${id}`}>End Date</label>
+          <input
+            id={`exp-end-date-${id}`}
+            type="date"
+            defaultValue={endDate}
+            data-id={id}
+            data-property="endDate"
+            onChange={this.handleEntryUpdate}
+          />
         </div>
-        <TasksEdit tasks={tasks} />
+        <TasksEdit
+          entryId={id}
+          tasks={tasks}
+          taskCallbacks={taskCallbacks}
+        />
       </div>
     )
   }
