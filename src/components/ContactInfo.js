@@ -35,15 +35,9 @@ class ContactInfo extends React.Component {
 
   updateContactInfo (property, value) {
     this.setState((prevState, props) => {
-      // Create copy of prevState contactInfo obj
-      const contactInfo = Object.assign({}, prevState.contactInfo)
-
-      // Update property to given value
-      contactInfo[property] = value
-
-      // Set new state
+      const updatedContactInfo = Object.assign({}, prevState.contactInfo, { [property]: value })
       return {
-        contactInfo: contactInfo
+        contactInfo: updatedContactInfo
       }
     })
   }
