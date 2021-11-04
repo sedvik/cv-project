@@ -70,24 +70,13 @@ class Education extends React.Component {
 
   updateEducationEntry (id, property, value) {
     this.setState((prevState, props) => {
-      // Determine index of education entry with the given id
-      const i = prevState.education.findIndex(entry => {
-        return entry.id === id
+      const updatedEducation = prevState.education.map(entry => {
+        return (
+          entry.id === id
+            ? Object.assign({}, entry, { [property]: value })
+            : entry
+        )
       })
-
-      // Create copy of that entry and modify provided property with given value
-      const updatedEntry = Object.assign({}, prevState.education[i])
-      updatedEntry[property] = value
-
-      // Create copy of rest of state.education minus the updated entry
-      const updatedEducation = prevState.education.filter(entry => {
-        return entry.id !== id
-      })
-
-      // Insert updated modified education entry into same position in state.education
-      updatedEducation.splice(i, 0, updatedEntry)
-
-      // Update state
       return {
         education: updatedEducation
       }
