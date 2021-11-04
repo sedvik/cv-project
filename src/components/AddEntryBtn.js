@@ -3,7 +3,13 @@ import '../styles/AddEntryBtn.css'
 
 class AddEntryBtn extends React.Component {
   render () {
-    return <button className="add-entry">+</button>
+    return (
+      <button
+        className="add-entry"
+        onClick={this.props.addEntry}
+      >
+        +
+      </button>)
   }
 }
 

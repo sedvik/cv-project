@@ -5,22 +5,28 @@ import '../styles/EducationEdit.css'
 
 class EducationEdit extends React.Component {
   render () {
-    const { education } = this.props
+    const {
+      education,
+      addEducationEntry,
+      deleteEducationEntry,
+      updateEducationEntry
+    } = this.props
 
     return (
       <div className="education-edit-container">
         {
-          education.map((entry, i) => {
+          education.map((entry) => {
             return (
               <EducationEditEntry
-                key={i}
-                entryNum={i}
+                key={entry.id}
                 educationEntry={entry}
+                deleteEducationEntry={deleteEducationEntry}
+                updateEducationEntry={updateEducationEntry}
               />
             )
           })
         }
-        <AddEntryBtn />
+        <AddEntryBtn addEntry={addEducationEntry} />
       </div>
     )
   }

@@ -19,7 +19,7 @@ class EducationDisplay extends React.Component {
         <tbody>
           {
             education.map((entry, i) => {
-              return <EducationDisplayEntry key={i} educationEntry={entry} />
+              return <EducationDisplayEntry key={entry.id} educationEntry={entry} />
             })
           }
         </tbody>
