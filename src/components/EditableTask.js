@@ -1,55 +1,47 @@
 import React from 'react'
 import '../styles/EditableTask.css'
 
-class EditableTask extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleTaskEdit = this.handleTaskEdit.bind(this)
-    this.handleTaskDelete = this.handleTaskDelete.bind(this)
-  }
+function EditableTask (props) {
+  const {
+    task,
+    entryId,
+    taskId,
+    entryNum
+  } = props
 
-  handleTaskEdit (e) {
+  function handleTaskEdit (e) {
     const entryId = e.target.getAttribute('data-entryid')
     const taskId = e.target.getAttribute('data-taskid')
     const value = e.target.value
-    this.props.updateTaskEntry(entryId, taskId, value)
+    props.updateTaskEntry(entryId, taskId, value)
   }
 
-  handleTaskDelete (e) {
+  function handleTaskDelete (e) {
     const entryId = e.target.getAttribute('data-entryid')
     const taskId = e.target.getAttribute('data-taskid')
-    this.props.deleteTaskEntry(entryId, taskId)
+    props.deleteTaskEntry(entryId, taskId)
   }
 
-  render () {
-    const {
-      task,
-      entryId,
-      taskId,
-      entryNum
-    } = this.props
-
-    return (
-      <div className="editable-task">
-        <p className="task-number">{entryNum})</p>
-        <input
-          type="text"
-          defaultValue={task.text}
-          data-entryid={entryId}
-          data-taskid={taskId}
-          onChange={this.handleTaskEdit}
-        />
-        <button
-          className="del-btn"
-          data-entryid={entryId}
-          data-taskid={taskId}
-          onClick={this.handleTaskDelete}
-        >
-          X
-        </button>
-      </div>
-    )
-  }
+  return (
+    <div className="editable-task">
+      <p className="task-number">{entryNum})</p>
+      <input
+        type="text"
+        defaultValue={task.text}
+        data-entryid={entryId}
+        data-taskid={taskId}
+        onChange={handleTaskEdit}
+      />
+      <button
+        className="del-btn"
+        data-entryid={entryId}
+        data-taskid={taskId}
+        onClick={handleTaskDelete}
+      >
+        X
+      </button>
+    </div>
+  )
 }
 
 export default EditableTask
