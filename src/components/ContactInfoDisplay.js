@@ -3,7 +3,6 @@ import '../styles/ContactInfoDisplay.css'
 
 function ContactInfoDisplay (props) {
   const { name, email, phone } = props.contactInfo
-  console.log(props)
 
   return (
     <div className="contact-info-display">
