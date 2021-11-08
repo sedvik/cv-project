@@ -1,23 +1,21 @@
 import React from 'react'
 
-class EducationDisplayEntry extends React.Component {
-  render () {
-    const {
-      schoolName,
-      titleOfStudy,
-      startDate,
-      endDate
-    } = this.props.educationEntry
+function EducationDisplayEntry (props) {
+  const {
+    schoolName,
+    titleOfStudy,
+    startDate,
+    endDate
+  } = props.educationEntry
 
-    return (
-      <tr>
-        <td>{schoolName}</td>
-        <td>{titleOfStudy}</td>
-        <td>{startDate}</td>
-        <td>{endDate}</td>
-      </tr>
-    )
-  }
+  return (
+    <tr>
+      <td>{schoolName}</td>
+      <td>{titleOfStudy}</td>
+      <td>{startDate}</td>
+      <td>{endDate}</td>
+    </tr>
+  )
 }
 
 export default EducationDisplayEntry
