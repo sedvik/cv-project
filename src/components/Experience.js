@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ExperienceDisplay from './ExperienceDisplay'
 import ExperienceEdit from './ExperienceEdit'
 import EditBtn from './EditBtn'
@@ -6,50 +6,33 @@ import SubmitBtn from './SubmitBtn'
 import uniqid from 'uniqid'
 import '../styles/Experience.css'
 
-class Experience extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      editable: true,
-      experience: [
+function Experience (props) {
+  const [editable, setEditable] = useState(true)
+  const [experience, setExperience] = useState([
+    {
+      id: uniqid(),
+      companyName: '',
+      position: '',
+      tasks: [
         {
           id: uniqid(),
-          companyName: '',
-          position: '',
-          tasks: [
-            {
-              id: uniqid(),
-              text: ''
-            }
-          ],
-          startDate: '',
-          endDate: ''
+          text: ''
         }
-      ]
+      ],
+      startDate: '',
+      endDate: ''
     }
-    this.setEditable = this.setEditable.bind(this)
-    this.setToDisplay = this.setToDisplay.bind(this)
-    this.addExperienceEntry = this.addExperienceEntry.bind(this)
-    this.deleteExperienceEntry = this.deleteExperienceEntry.bind(this)
-    this.updateExperienceEntry = this.updateExperienceEntry.bind(this)
-    this.addTaskEntry = this.addTaskEntry.bind(this)
-    this.deleteTaskEntry = this.deleteTaskEntry.bind(this)
-    this.updateTaskEntry = this.updateTaskEntry.bind(this)
+  ])
+
+  function setToEditable () {
+    setEditable(true)
   }
 
-  setEditable () {
-    this.setState({
-      editable: true
-    })
+  function setToDisplay () {
+    setEditable(false)
   }
 
-  setToDisplay () {
-    this.setState({
-      editable: false
-    })
-  }
-
-  addExperienceEntry () {
+  function addExperienceEntry () {
     const newExperienceEntry = {
       id: uniqid(),
       companyName: '',
@@ -64,132 +47,105 @@ class Experience extends React.Component {
       endDate: ''
     }
 
-    this.setState((prevState, props) => {
-      const newExperience = [...prevState.experience, newExperienceEntry]
-      return {
-        experience: newExperience
-      }
-    })
+    const newExperience = [...experience, newExperienceEntry]
+    setExperience(newExperience)
   }
 
-  deleteExperienceEntry (id) {
-    this.setState((prevState, props) => {
-      const updatedExperience = prevState.experience.filter(entry => {
-        return entry.id !== id
-      })
-      return {
-        experience: updatedExperience
-      }
+  function deleteExperienceEntry (id) {
+    const updatedExperience = experience.filter(entry => {
+      return entry.id !== id
     })
+    setExperience(updatedExperience)
   }
 
-  updateExperienceEntry (id, property, value) {
-    this.setState((prevState, props) => {
-      const updatedExperience = prevState.experience.map(entry => {
-        return (
-          entry.id === id
-            ? Object.assign({}, entry, { [property]: value })
-            : entry
-        )
-      })
-
-      return {
-        experience: updatedExperience
-      }
+  function updateExperienceEntry (id, property, value) {
+    const updatedExperience = experience.map(entry => {
+      return (
+        entry.id === id
+          ? Object.assign({}, entry, { [property]: value })
+          : entry
+      )
     })
+    setExperience(updatedExperience)
   }
 
-  addTaskEntry (entryId) {
+  function addTaskEntry (entryId) {
     const newTask = {
       id: uniqid(),
       text: ''
     }
 
-    this.setState((prevState, props) => {
-      const newExperience = prevState.experience.map(entry => {
-        const newTasks = [...entry.tasks, newTask]
-        return (
-          entry.id === entryId
-            ? Object.assign({}, entry, { tasks: newTasks })
-            : entry
-        )
-      })
-
-      return {
-        experience: newExperience
-      }
+    const newExperience = experience.map(entry => {
+      const newTasks = [...entry.tasks, newTask]
+      return (
+        entry.id === entryId
+          ? Object.assign({}, entry, { tasks: newTasks })
+          : entry
+      )
     })
+
+    setExperience(newExperience)
   }
 
-  deleteTaskEntry (entryId, taskId) {
-    this.setState((prevState, props) => {
-      const newExperience = prevState.experience.map(entry => {
-        if (entry.id === entryId) {
-          const newTasks = entry.tasks.filter(task => {
-            return task.id !== taskId
-          })
-          return Object.assign({}, entry, { tasks: newTasks })
-        } else {
-          return entry
-        }
-      })
-      return {
-        experience: newExperience
+  function deleteTaskEntry (entryId, taskId) {
+    const newExperience = experience.map(entry => {
+      if (entry.id === entryId) {
+        const newTasks = entry.tasks.filter(task => {
+          return task.id !== taskId
+        })
+        return Object.assign({}, entry, { tasks: newTasks })
+      } else {
+        return entry
       }
     })
+
+    setExperience(newExperience)
   }
 
-  updateTaskEntry (entryId, taskId, value) {
-    this.setState((prevState, props) => {
-      const newExperience = prevState.experience.map(entry => {
-        if (entry.id === entryId) {
-          const newTasks = entry.tasks.map(task => {
-            return (
-              task.id === taskId
-                ? Object.assign({}, task, { text: value })
-                : task
-            )
-          })
-          return Object.assign({}, entry, { tasks: newTasks })
-        } else {
-          return entry
-        }
-      })
-      return {
-        experience: newExperience
+  function updateTaskEntry (entryId, taskId, value) {
+    const newExperience = experience.map(entry => {
+      if (entry.id === entryId) {
+        const newTasks = entry.tasks.map(task => {
+          return (
+            task.id === taskId
+              ? Object.assign({}, task, { text: value })
+              : task
+          )
+        })
+        return Object.assign({}, entry, { tasks: newTasks })
+      } else {
+        return entry
       }
     })
+
+    setExperience(newExperience)
   }
 
-  render () {
-    const { editable, experience } = this.state
-
-    return (
-      <div className="experience-container">
-        <h1>Experience</h1>
-        {editable
-          ? <ExperienceEdit
-              experience={experience}
-              addExperienceEntry={this.addExperienceEntry}
-              deleteExperienceEntry={this.deleteExperienceEntry}
-              updateExperienceEntry={this.updateExperienceEntry}
-              taskCallbacks={
-                {
-                  addTaskEntry: this.addTaskEntry,
-                  deleteTaskEntry: this.deleteTaskEntry,
-                  updateTaskEntry: this.updateTaskEntry
-                }
+  return (
+    <div className="experience-container">
+      <h1>Experience</h1>
+      {editable
+        ? <ExperienceEdit
+            experience={experience}
+            addExperienceEntry={addExperienceEntry}
+            deleteExperienceEntry={deleteExperienceEntry}
+            updateExperienceEntry={updateExperienceEntry}
+            taskCallbacks={
+              {
+                addTaskEntry: addTaskEntry,
+                deleteTaskEntry: deleteTaskEntry,
+                updateTaskEntry: updateTaskEntry
               }
-            />
-          : <ExperienceDisplay experience={experience} />
-        }
-        {editable
-          ? <SubmitBtn setToDisplay={this.setToDisplay} />
-          : <EditBtn setEditable={this.setEditable} />
-        }
-      </div>
-    )
-  }
+            }
+          />
+        : <ExperienceDisplay experience={experience} />
+      }
+      {editable
+        ? <SubmitBtn setToDisplay={setToDisplay} />
+        : <EditBtn setEditable={setToEditable} />
+      }
+    </div>
+  )
 }
 
 export default Experience
