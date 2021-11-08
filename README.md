@@ -6,8 +6,9 @@ This project was completed in order to practice the following:
 
 1. Application development using React
 2. Use of React state and props
-3. Separating an application into relatively small (sometimes reusable) components 
+3. Separating an application into relatively small/reusable components 
 4. create-react-app use and deployment practice
+5. React useState hook
 
 ## Application Details
 This application allows a user to input resume information into 3 main sections:
