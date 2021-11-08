@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EducationDisplay from './EducationDisplay'
 import EducationEdit from './EducationEdit'
 import EditBtn from './EditBtn'
@@ -6,41 +6,27 @@ import SubmitBtn from './SubmitBtn'
 import uniqid from 'uniqid'
 import '../styles/Education.css'
 
-class Education extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      editable: true,
-      education: [
-        {
-          id: uniqid(),
-          schoolName: '',
-          titleOfStudy: '',
-          startDate: '',
-          endDate: ''
-        }
-      ]
+function Education (props) {
+  const [editable, setEditable] = useState(true)
+  const [education, setEducation] = useState([
+    {
+      id: uniqid(),
+      schoolName: '',
+      titleOfStudy: '',
+      startDate: '',
+      endDate: ''
     }
-    this.setEditable = this.setEditable.bind(this)
-    this.setToDisplay = this.setToDisplay.bind(this)
-    this.addEducationEntry = this.addEducationEntry.bind(this)
-    this.deleteEducationEntry = this.deleteEducationEntry.bind(this)
-    this.updateEducationEntry = this.updateEducationEntry.bind(this)
+  ])
+
+  function setToEditable () {
+    setEditable(true)
   }
 
-  setEditable () {
-    this.setState({
-      editable: true
-    })
+  function setToDisplay () {
+    setEditable(false)
   }
 
-  setToDisplay () {
-    this.setState({
-      editable: false
-    })
-  }
-
-  addEducationEntry () {
+  function addEducationEntry () {
     const newEducationEntry = {
       id: uniqid(),
       schoolName: '',
@@ -49,61 +35,47 @@ class Education extends React.Component {
       endDate: ''
     }
 
-    this.setState((prevState, props) => {
-      const newEducation = [...prevState.education, newEducationEntry]
-      return {
-        education: newEducation
-      }
-    })
+    setEducation([...education, newEducationEntry])
   }
 
-  deleteEducationEntry (id) {
-    this.setState((prevState, props) => {
-      const newEducation = prevState.education.filter(entry => {
-        return entry.id !== id
-      })
-      return {
-        education: newEducation
-      }
+  function deleteEducationEntry (id) {
+    const newEducation = education.filter(entry => {
+      return entry.id !== id
     })
+
+    setEducation(newEducation)
   }
 
-  updateEducationEntry (id, property, value) {
-    this.setState((prevState, props) => {
-      const updatedEducation = prevState.education.map(entry => {
-        return (
-          entry.id === id
-            ? Object.assign({}, entry, { [property]: value })
-            : entry
-        )
-      })
-      return {
-        education: updatedEducation
-      }
+  function updateEducationEntry (id, property, value) {
+    const updatedEducation = education.map(entry => {
+      return (
+        entry.id === id
+          ? Object.assign({}, entry, { [property]: value })
+          : entry
+      )
     })
+
+    setEducation(updatedEducation)
   }
 
-  render () {
-    const { editable, education } = this.state
-    return (
-      <div className="education-container">
-        <h1>Education</h1>
-        {editable
-          ? <EducationEdit
-              education={education}
-              addEducationEntry={this.addEducationEntry}
-              deleteEducationEntry={this.deleteEducationEntry}
-              updateEducationEntry={this.updateEducationEntry}
-            />
-          : <EducationDisplay education={education} />
-        }
-        {editable
-          ? <SubmitBtn setToDisplay={this.setToDisplay} />
-          : <EditBtn setEditable={this.setEditable} />
-        }
-      </div>
-    )
-  }
+  return (
+    <div className="education-container">
+      <h1>Education</h1>
+      {editable
+        ? <EducationEdit
+            education={education}
+            addEducationEntry={addEducationEntry}
+            deleteEducationEntry={deleteEducationEntry}
+            updateEducationEntry={updateEducationEntry}
+          />
+        : <EducationDisplay education={education} />
+      }
+      {editable
+        ? <SubmitBtn setToDisplay={setToDisplay} />
+        : <EditBtn setEditable={setToEditable} />
+      }
+    </div>
+  )
 }
 
 export default Education
